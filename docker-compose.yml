@@ -19,11 +19,11 @@ services:
       redis:
         condition: service_healthy
 
-  # sql_server:
+  # sqlserver:
   #   build:
   #     context: .
   #     dockerfile: Dockerfile.sqlserver
-  #   container_name: sql_server
+  #   container_name: sqlserver
   #   environment:
   #     - ACCEPT_EULA=Y
   #     - SA_PASSWORD=${SA_PASSWORD}
@@ -35,7 +35,19 @@ services:
   #   networks:
   #     - node_api_network
   #   healthcheck:
-  #     test: [ "CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "${SA_PASSWORD}", "-Q", "SELECT 1" ]
+  #     test:
+  #       [
+  #         "CMD",
+  #         "/opt/mssql-tools/bin/sqlcmd",
+  #         "-S",
+  #         "localhost",
+  #         "-U",
+  #         "sa",
+  #         "-P",
+  #         "${SA_PASSWORD}",
+  #         "-Q",
+  #         "SELECT 1",
+  #       ]
   #     interval: 10s
   #     timeout: 5s
   #     retries: 5
